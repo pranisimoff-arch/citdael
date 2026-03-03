@@ -1,27 +1,1113 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Landing Page</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CITADEL — Лучшая крипто подписка</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --orange: #F5440A;
+    --black: #111111;
+    --cream: #F2EFE9;
+    --white: #FFFFFF;
+    --gray: #888888;
+    --gray-light: #DDDDDD;
+    --card-dark: #1A1A1A;
+    --gold: #F5C518;
+    --blue: #5BB8F5;
+    --green: #4CAF50;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Manrope', sans-serif;
+    background: var(--cream);
+    color: var(--black);
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: var(--cream);
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 28px 48px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    position: relative;
+    z-index: 10;
+  }
+
+  .nav-label {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--gray);
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+
+  .nav-badge {
+    background: var(--orange);
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 6px 14px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .hero-body {
+    display: flex;
+    align-items: flex-end;
+    padding: 0 48px 0 56px;
+    position: relative;
+  }
+
+  .orange-bar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 10px;
+    background: var(--orange);
+  }
+
+  .hero-title-block {
+    flex: 1;
+  }
+
+  .hero-eyebrow {
+    font-size: 13px;
+    color: var(--gray);
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    margin-bottom: 12px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.2s;
+  }
+
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(100px, 18vw, 200px);
+    line-height: 0.92;
+    color: var(--black);
+    letter-spacing: -0.01em;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.4s;
+  }
+
+  .hero-subtitle {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(80px, 14vw, 160px);
+    line-height: 0.92;
+    color: var(--orange);
+    letter-spacing: -0.01em;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.6s;
+  }
+
+  .hero-right {
+    width: 320px;
+    padding-bottom: 40px;
+    padding-left: 40px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.8s;
+  }
+
+  .hero-desc {
+    font-size: 15px;
+    line-height: 1.7;
+    color: #555;
+    margin-bottom: 28px;
+  }
+
+  .price-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--black);
+    color: white;
+    padding: 14px 24px;
+    font-weight: 700;
+    font-size: 18px;
+  }
+
+  .price-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px;
+    color: var(--orange);
+    line-height: 1;
+  }
+
+  .hero-footer {
+    padding: 20px 48px;
+    border-top: 1px solid rgba(0,0,0,0.1);
+    display: flex;
+    gap: 40px;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: var(--gray);
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .asterisk {
+    position: absolute;
+    top: 80px;
+    right: 48px;
+    width: 70px;
+    height: 70px;
+    background: var(--orange);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    color: white;
+    animation: spin 20s linear infinite;
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── SECTIONS GENERAL ── */
+  section {
+    padding: 80px 48px;
+  }
+
+  .section-num {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(48px, 7vw, 80px);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .section-sub {
+    font-size: 15px;
+    color: var(--gray);
+    margin-bottom: 52px;
+    max-width: 600px;
+  }
+
+  /* ── OVERVIEW (dark) ── */
+  .overview {
+    background: var(--black);
+    color: white;
+  }
+
+  .overview .section-num { color: var(--orange); }
+
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-top: 48px;
+  }
+
+  .channel-card {
+    background: #181818;
+    padding: 36px 28px;
+    border-top: 4px solid transparent;
+    transition: transform 0.3s ease;
+    cursor: default;
+  }
+
+  .channel-card:hover {
+    transform: translateY(-4px);
+  }
+
+  .channel-card.orange { border-color: var(--orange); }
+  .channel-card.gold   { border-color: var(--gold); }
+  .channel-card.blue   { border-color: var(--blue); }
+
+  .card-num {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    margin-bottom: 20px;
+  }
+  .card-num.orange { color: var(--orange); }
+  .card-num.gold   { color: var(--gold); }
+  .card-num.blue   { color: var(--blue); }
+
+  .card-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 40px;
+    line-height: 1;
+    color: white;
+    margin-bottom: 6px;
+  }
+
+  .card-tagline {
+    font-size: 12px;
+    font-style: italic;
+    margin-bottom: 20px;
+  }
+  .card-tagline.orange { color: var(--orange); }
+  .card-tagline.gold   { color: var(--gold); }
+  .card-tagline.blue   { color: var(--blue); }
+
+  .card-divider {
+    height: 1px;
+    background: #2a2a2a;
+    margin-bottom: 20px;
+  }
+
+  .card-desc {
+    font-size: 13px;
+    line-height: 1.7;
+    color: #aaa;
+  }
+
+  /* ── PRIVATE (light) ── */
+  .private-section {
+    background: var(--cream);
+    position: relative;
+    padding-left: 72px;
+  }
+
+  .private-section::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 8px;
+    background: var(--orange);
+  }
+
+  .private-section .section-num { color: var(--orange); }
+
+  .quote-block {
+    background: #E8E4DC;
+    border-left: 6px solid var(--orange);
+    padding: 24px 28px;
+    margin: 36px 0 48px;
+    max-width: 700px;
+    font-size: 16px;
+    font-style: italic;
+    line-height: 1.65;
+    color: #333;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: #D8D4CC;
+    max-width: 880px;
+  }
+
+  .feature-item {
+    background: var(--cream);
+    padding: 28px 24px;
+    transition: background 0.2s;
+  }
+
+  .feature-item:hover { background: #EAE6DE; }
+
+  .feature-num {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--orange);
+    letter-spacing: 0.15em;
+    margin-bottom: 8px;
+  }
+
+  .feature-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--black);
+    margin-bottom: 4px;
+  }
+
+  .feature-desc {
+    font-size: 13px;
+    color: var(--gray);
+    line-height: 1.6;
+  }
+
+  /* ── TRADING (dark) ── */
+  .trading-section {
+    background: var(--black);
+    color: white;
+  }
+
+  .trading-section .section-num { color: var(--gold); }
+
+  .trading-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3px;
+    margin-top: 48px;
+  }
+
+  .trading-stat {
+    background: #1a1a1a;
+    padding: 48px 36px;
+    border-top: 4px solid var(--gold);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .stat-big {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 96px;
+    line-height: 0.9;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+
+  .stat-desc {
+    font-size: 14px;
+    color: #888;
+    line-height: 1.6;
+  }
+
+  .trading-list {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .trading-item {
+    background: #1a1a1a;
+    padding: 20px 24px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    transition: background 0.2s;
+  }
+
+  .trading-item:hover { background: #222; }
+
+  .ti-icon { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+
+  .ti-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 2px;
+    letter-spacing: 0.05em;
+  }
+
+  .ti-sub { font-size: 12px; color: #666; }
+
+  .trading-note {
+    margin-top: 3px;
+    background: #1a1400;
+    border: 1px solid var(--gold);
+    padding: 18px 24px;
+    font-size: 13px;
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  /* ── MIRROR (light) ── */
+  .mirror-section {
+    background: var(--cream);
+    position: relative;
+    padding-left: 72px;
+  }
+
+  .mirror-section::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 8px;
+    background: var(--blue);
+  }
+
+  .mirror-section .section-num { color: var(--blue); }
+
+  .mirror-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr 2fr;
+    gap: 2px;
+    margin-bottom: 2px;
+  }
+
+  .mirror-stat {
+    background: #E8E4DC;
+    padding: 36px 28px;
+    text-align: center;
+  }
+
+  .mirror-big {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 80px;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .mirror-big.blue { color: var(--blue); }
+  .mirror-big.orange { color: var(--orange); }
+
+  .mirror-label {
+    font-size: 13px;
+    color: var(--gray);
+  }
+
+  .mirror-features {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 2px;
+  }
+
+  .mirror-feature {
+    background: #E8E4DC;
+    padding: 20px 16px;
+    font-size: 12px;
+    line-height: 1.5;
+    color: var(--black);
+    transition: background 0.2s;
+  }
+
+  .mirror-feature:hover { background: #DDD8D0; }
+
+  .mf-icon { font-size: 20px; display: block; margin-bottom: 8px; }
+
+  /* ── RESULTS (dark) ── */
+  .results-section {
+    background: var(--black);
+    color: white;
+  }
+
+  .results-section .section-num { color: var(--orange); }
+
+  .results-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 2px;
+    margin: 48px 0 2px;
+  }
+
+  .result-card {
+    background: #181818;
+    padding: 28px 20px;
+    border-top: 4px solid transparent;
+    text-align: center;
+    transition: transform 0.3s;
+  }
+
+  .result-card:hover { transform: translateY(-6px); }
+
+  .result-coin {
+    font-size: 13px;
+    font-weight: 700;
+    color: #888;
+    margin-bottom: 16px;
+    letter-spacing: 0.05em;
+  }
+
+  .result-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 72px;
+    line-height: 1;
+  }
+
+  .results-note {
+    background: #140800;
+    border: 1px solid var(--orange);
+    padding: 18px 24px;
+    font-size: 13px;
+    color: var(--orange);
+    font-style: italic;
+    text-align: center;
+  }
+
+  /* ── FOR WHO (light) ── */
+  .forWho-section {
+    background: var(--cream);
+    position: relative;
+    padding-left: 72px;
+  }
+
+  .forWho-section::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 8px;
+    background: var(--orange);
+  }
+
+  .forWho-section .section-num { color: var(--orange); }
+
+  .persona-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-top: 48px;
+  }
+
+  .persona {
+    background: #E8E4DC;
+    display: grid;
+    grid-template-columns: 60px 220px 1fr;
+    align-items: center;
+    gap: 0;
+    transition: background 0.2s;
+    overflow: hidden;
+  }
+
+  .persona:hover { background: #DDD8D0; }
+
+  .persona-accent {
+    width: 6px;
+    align-self: stretch;
+  }
+
+  .persona-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 48px;
+    color: #ccc;
+    padding: 28px 20px;
+    text-align: center;
+    border-right: 1px solid #d0ccc4;
+  }
+
+  .persona-title-wrap {
+    padding: 28px 28px;
+    border-right: 1px solid #d0ccc4;
+  }
+
+  .persona-title {
+    font-size: 17px;
+    font-weight: 800;
+    color: var(--black);
+    margin-bottom: 4px;
+  }
+
+  .persona-sub {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .persona-desc {
+    padding: 28px 36px;
+    font-size: 14px;
+    color: #555;
+    line-height: 1.7;
+  }
+
+  /* ── GUARANTEE (dark) ── */
+  .guarantee-section {
+    background: var(--orange);
+    color: white;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 60vh;
+  }
+
+  .guarantee-left {
+    padding: 72px 64px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .guarantee-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(60px, 9vw, 100px);
+    line-height: 0.95;
+    color: white;
+    margin-bottom: 24px;
+  }
+
+  .guarantee-sub {
+    font-size: 16px;
+    color: rgba(255,255,255,0.8);
+    line-height: 1.7;
+    margin-bottom: 36px;
+    max-width: 380px;
+  }
+
+  .guarantee-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    padding: 14px 22px;
+    font-size: 13px;
+    font-weight: 600;
+    color: white;
+    backdrop-filter: blur(4px);
+    max-width: fit-content;
+  }
+
+  .guarantee-right {
+    background: var(--black);
+    padding: 72px 64px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 28px;
+  }
+
+  .cta-price {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 48px;
+    color: var(--orange);
+    line-height: 1;
+  }
+
+  .cta-label {
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .cta-btn {
+    display: block;
+    background: var(--orange);
+    color: white;
+    text-decoration: none;
+    padding: 20px 36px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 0.08em;
+    text-align: center;
+    transition: background 0.2s, transform 0.2s;
+    cursor: pointer;
+    border: none;
+    width: 100%;
+  }
+
+  .cta-btn:hover {
+    background: #d93800;
+    transform: translateY(-2px);
+  }
+
+  .cta-note {
+    font-size: 12px;
+    color: #555;
+    text-align: center;
+    line-height: 1.6;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--black);
+    padding: 28px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #222;
+  }
+
+  .footer-brand {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 24px;
+    color: white;
+    letter-spacing: 0.05em;
+  }
+
+  .footer-meta {
+    font-size: 11px;
+    color: #555;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* ── SCROLL REVEAL ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    section { padding: 60px 24px; }
+    .hero-nav { padding: 20px 24px; }
+    .hero-body { padding: 0 24px 0 40px; flex-direction: column; align-items: flex-start; }
+    .hero-right { width: 100%; padding-left: 0; padding-top: 32px; }
+    .hero-footer { padding: 16px 24px; gap: 16px; flex-wrap: wrap; }
+    .cards-grid, .trading-layout, .mirror-stats, .mirror-features, .results-grid { grid-template-columns: 1fr; }
+    .persona { grid-template-columns: 50px 1fr; }
+    .persona-title-wrap { border-right: none; }
+    .persona-desc { grid-column: 1 / -1; padding: 0 20px 24px; }
+    .guarantee-section { grid-template-columns: 1fr; }
+    .private-section, .mirror-section, .forWho-section { padding-left: 40px; }
+    .features-grid { grid-template-columns: 1fr; }
+    .asterisk { top: 60px; right: 24px; width: 50px; height: 50px; font-size: 20px; }
+  }
+</style>
 </head>
 <body>
-    <header>
-        <h1>Welcome to Our Presentation</h1>
-        <p>This is the landing page for presentation purposes.</p>
-    </header>
-    <main>
-        <section>
-            <h2>About Us</h2>
-            <p>Your company description goes here.</p>
-        </section>
-        <section>
-            <h2>Contact Us</h2>
-            <p>Your contact information goes here.</p>
-        </section>
-    </main>
-    <footer>
-        <p>&copy; 2026 Your Company. All rights reserved.</p>
-    </footer>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <nav class="hero-nav">
+    <span class="nav-label">Citadel · Крипто подписка · 2025</span>
+    <div class="asterisk">✦</div>
+    <span class="nav-badge">100$ / мес</span>
+  </nav>
+
+  <div class="hero-body">
+    <div class="orange-bar"></div>
+    <div class="hero-title-block">
+      <p class="hero-eyebrow">Лучшая крипто подписка · Всё в одном</p>
+      <div class="hero-title">CITADEL</div>
+      <div class="hero-subtitle">MUST HAVE</div>
+    </div>
+    <div class="hero-right">
+      <p class="hero-desc">
+        Дешево ≠ некачественно.<br>
+        Продукт для людей — это принцип.<br><br>
+        За 100$ в месяц ты получаешь три канала, 35 приваток и 24/7 поддержку.
+      </p>
+      <div class="price-tag">
+        <span>Всего</span>
+        <span class="price-num">100$</span>
+        <span>в месяц</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-footer">
+    <span>Citadel Private</span>
+    <span>Citadel Trading</span>
+    <span>Citadel Mirror</span>
+    <span>Гарантия 36ч</span>
+  </div>
+</section>
+
+<!-- ── OVERVIEW ── -->
+<section class="overview reveal">
+  <div class="section-num" style="color:var(--orange)">— ЧТО ВНУТРИ</div>
+  <div class="section-title" style="color:white">ЧТО ТЫ ПОЛУЧАЕШЬ</div>
+  <p class="section-sub" style="color:#888">За минимальный прайс — максимум контента, которого не найдёшь нигде.</p>
+
+  <div class="cards-grid">
+    <div class="channel-card orange">
+      <div class="card-num orange">01</div>
+      <div class="card-title">CITADEL<br>PRIVATE</div>
+      <div class="card-tagline orange">Видеть больше</div>
+      <div class="card-divider"></div>
+      <div class="card-desc">Макро, геополитика, экономика простыми словами. Понимание рынков ЗАРАНЕЕ. Словно открывает третий глаз.</div>
+    </div>
+    <div class="channel-card gold">
+      <div class="card-num gold">02</div>
+      <div class="card-title">CITADEL<br>TRADING</div>
+      <div class="card-tagline gold">Торговать прибыльно</div>
+      <div class="card-divider"></div>
+      <div class="card-desc">Сделки спот / фьючи, ончейн метрики, ставки Polymarket. 500–1000$ за 30 дней при правильных действиях.</div>
+    </div>
+    <div class="channel-card blue">
+      <div class="card-num blue">03</div>
+      <div class="card-title">CITADEL<br>MIRROR</div>
+      <div class="card-tagline blue">35 приваток</div>
+      <div class="card-divider"></div>
+      <div class="card-desc">Лучшие сделки из 35 приваток топ-трейдеров в одном месте. 3.000.000₽ знаний за копейки.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PRIVATE ── -->
+<section class="private-section reveal">
+  <div class="section-num">— 01 / CITADEL PRIVATE</div>
+  <div class="section-title">ВИДЕТЬ<br>БОЛЬШЕ</div>
+
+  <div class="quote-block">
+    «Канал словно открывает третий глаз — позволяет предсказывать поведение финансовых рынков ЗАРАНЕЕ»
+  </div>
+
+  <div class="features-grid">
+    <div class="feature-item">
+      <div class="feature-num">01</div>
+      <div class="feature-title">Лучшие крипто-новости</div>
+      <div class="feature-desc">Только важное — фильтрация шума без мусора. Можно выйти из всех пабликов и пользоваться только им.</div>
+    </div>
+    <div class="feature-item">
+      <div class="feature-num">02</div>
+      <div class="feature-title">Макро и геополитика</div>
+      <div class="feature-desc">Понимаешь как мировые события влияют на график. Отчёты, заговоры, умные капиталы.</div>
+    </div>
+    <div class="feature-item">
+      <div class="feature-num">03</div>
+      <div class="feature-title">Умные деньги</div>
+      <div class="feature-desc">Покупки китов, фонды, ончейн, скамы проектов — и многое другое без лишней болтовни.</div>
+    </div>
+    <div class="feature-item">
+      <div class="feature-num">04</div>
+      <div class="feature-title">Прогнозы заранее</div>
+      <div class="feature-desc">Выходи с рынка вовремя, входи в нужный момент. НЕЗАМЕНИМО чтобы не ликвиднуло на фьючах.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TRADING ── -->
+<section class="trading-section reveal">
+  <div class="section-num" style="color:var(--gold)">— 02 / CITADEL TRADING</div>
+  <div class="section-title" style="color:white">ВСЁ ДЛЯ<br>ТОРГОВЛИ</div>
+
+  <div class="trading-layout">
+    <div class="trading-stat">
+      <div>
+        <div class="stat-big">500–<br>1000$</div>
+        <div class="stat-desc">заработай за 30 дней,<br>делая всё правильно</div>
+      </div>
+      <div style="margin-top:32px; font-size:12px; color:#555; line-height:1.7;">
+        Аналоги на рынке — от 200 до 500$ в месяц.<br>
+        Мы даём то же самое за 100$.
+      </div>
+    </div>
+    <div class="trading-list">
+      <div class="trading-item">
+        <span class="ti-icon">📊</span>
+        <div>
+          <div class="ti-title">СДЕЛКИ СПОТ / ФЬЮЧИ</div>
+          <div class="ti-sub">Готовые точки входа и выхода</div>
+        </div>
+      </div>
+      <div class="trading-item">
+        <span class="ti-icon">💬</span>
+        <div>
+          <div class="ti-title">ОБЗОРЫ И МЫСЛИ</div>
+          <div class="ti-sub">Мнение команды — чистое и без лишнего</div>
+        </div>
+      </div>
+      <div class="trading-item">
+        <span class="ti-icon">🎯</span>
+        <div>
+          <div class="ti-title">POLYMARKET</div>
+          <div class="ti-sub">Ставки на события с высокой точностью</div>
+        </div>
+      </div>
+      <div class="trading-item">
+        <span class="ti-icon">🔗</span>
+        <div>
+          <div class="ti-title">ОНЧЕЙН МЕТРИКИ</div>
+          <div class="ti-sub">Данные блокчейна для умных решений</div>
+        </div>
+      </div>
+      <div class="trading-item">
+        <span class="ti-icon">📚</span>
+        <div>
+          <div class="ti-title">ОБУЧЕНИЕ НА ПРИМЕРАХ</div>
+          <div class="ti-sub">Разборы реальных сделок с командой</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="trading-note">
+    Каждый пост приправляется мнением команды — уже очищенным от лишнего. Нет такого что я топлю за лонг, а команда за шорт.
+  </div>
+</section>
+
+<!-- ── MIRROR ── -->
+<section class="mirror-section reveal">
+  <div class="section-num" style="color:var(--blue)">— 03 / CITADEL MIRROR</div>
+  <div class="section-title">35 ПРИВАТОК<br>В ОДНОМ МЕСТЕ</div>
+
+  <div style="margin-top:48px;">
+    <div class="mirror-stats">
+      <div class="mirror-stat">
+        <div class="mirror-big blue">35</div>
+        <div class="mirror-label">приваток топ-трейдеров</div>
+      </div>
+      <div class="mirror-stat">
+        <div class="mirror-big orange">3M₽</div>
+        <div class="mirror-label">знаний за копейки</div>
+      </div>
+      <div class="mirror-stat" style="text-align:left; padding:32px;">
+        <p style="font-size:15px; line-height:1.7; color:#555;">
+          За 7 лет в крипте я пересмотрел сотни приваток — от самых известных до эксклюзивных клубов за 30.000$ на пару человек.<br><br>
+          Сейчас в моём пользовании ~35 приваток для разных рыночных условий.
+        </p>
+      </div>
+    </div>
+    <div class="mirror-features">
+      <div class="mirror-feature">
+        <span class="mf-icon">🐻</span>
+        Медвежий рынок — цена стекает вниз
+      </div>
+      <div class="mirror-feature">
+        <span class="mf-icon">🐂</span>
+        Бычий рынок — избегаешь потерь в рост
+      </div>
+      <div class="mirror-feature">
+        <span class="mf-icon">↔️</span>
+        Боковик — 80% времени крипты
+      </div>
+      <div class="mirror-feature">
+        <span class="mf-icon">🌍</span>
+        Спот / Фьючи / Polymarket / Акции
+      </div>
+      <div class="mirror-feature">
+        <span class="mf-icon">⏱</span>
+        7 лет опыта — отобрано из сотен приваток
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── RESULTS ── -->
+<section class="results-section reveal">
+  <div class="section-num" style="color:var(--orange)">— ТРЕК-РЕКОРД</div>
+  <div class="section-title" style="color:white">НАШИ<br>РЕЗУЛЬТАТЫ</div>
+  <p class="section-sub">Каждые 3 месяца — тема с сотнями % доходности. Вот малая часть того, на чём прокатилось комьюнити.</p>
+
+  <div class="results-grid">
+    <div class="result-card" style="border-color:var(--orange)">
+      <div class="result-coin">$GRIMACE</div>
+      <div class="result-num" style="color:var(--orange)">×100</div>
+    </div>
+    <div class="result-card" style="border-color:var(--gold)">
+      <div class="result-coin">$WIF</div>
+      <div class="result-num" style="color:var(--gold)">×30</div>
+    </div>
+    <div class="result-card" style="border-color:var(--green)">
+      <div class="result-coin">$TON номера</div>
+      <div class="result-num" style="color:var(--green)">×20</div>
+    </div>
+    <div class="result-card" style="border-color:#FF69B4">
+      <div class="result-coin">$PEPE</div>
+      <div class="result-num" style="color:#FF69B4">×16</div>
+    </div>
+    <div class="result-card" style="border-color:var(--blue)">
+      <div class="result-coin">$SUNDOG</div>
+      <div class="result-num" style="color:var(--blue)">×10</div>
+    </div>
+  </div>
+  <div class="results-note">
+    Статистически — каждые 3 месяца появляется лайфчейндж-сделка. Вопрос: ты в теме или снова пропустил?
+  </div>
+</section>
+
+<!-- ── FOR WHO ── -->
+<section class="forWho-section reveal">
+  <div class="section-num">— ДЛЯ КОГО</div>
+  <div class="section-title">ДЛЯ КОГО<br>CITADEL?</div>
+
+  <div class="persona-list">
+    <div class="persona">
+      <div class="persona-accent" style="background:var(--orange)"></div>
+      <div class="persona-num">01</div>
+      <div class="persona-title-wrap">
+        <div class="persona-title">Занятые люди</div>
+        <div class="persona-sub" style="color:var(--orange)">Нет времени 24/7</div>
+      </div>
+      <div class="persona-desc">
+        Не нужно следить за рынком круглосуточно. Мы делаем анализ — ты зарабатываешь. Читай раз в два дня — и кошелёк не болит.
+      </div>
+    </div>
+    <div class="persona">
+      <div class="persona-accent" style="background:var(--gold)"></div>
+      <div class="persona-num">02</div>
+      <div class="persona-title-wrap">
+        <div class="persona-title">Трейдеры</div>
+        <div class="persona-sub" style="color:var(--gold)">Нужен поток идей</div>
+      </div>
+      <div class="persona-desc">
+        Получи готовое мнение команды + 35 приваток в одном окне. Уже очищенный сентимент без лишних сомнений.
+      </div>
+    </div>
+    <div class="persona">
+      <div class="persona-accent" style="background:var(--green)"></div>
+      <div class="persona-num">03</div>
+      <div class="persona-title-wrap">
+        <div class="persona-title">Начинающие</div>
+        <div class="persona-sub" style="color:var(--green)">Учись на реальном</div>
+      </div>
+      <div class="persona-desc">
+        Учись на примерах реальных сделок. С опытным трекером — не сольёшь первый депозит. Лучше учиться с тренером, чем одному.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── GUARANTEE / CTA ── -->
+<div class="guarantee-section reveal">
+  <div class="guarantee-left">
+    <div class="guarantee-title">ТУПО<br>НЕЧЕГО<br>ТЕРЯТЬ</div>
+    <p class="guarantee-sub">
+      Глупо просто не попробовать. Тебе нечего терять — есть гарантия возврата в течение первых 36 часов без лишних вопросов.
+    </p>
+    <div class="guarantee-badge">
+      🛡&nbsp;&nbsp;Гарантия возврата 36 часов · @citadel_spt
+    </div>
+  </div>
+
+  <div class="guarantee-right">
+    <div>
+      <div class="cta-label">Стоимость подписки</div>
+      <div class="cta-price">100$ / месяц</div>
+    </div>
+    <div style="height:1px; background:#222;"></div>
+    <div>
+      <div style="font-size:13px; color:#555; margin-bottom:16px;">Что входит в подписку:</div>
+      <div style="display:flex; flex-direction:column; gap:8px; font-size:13px; color:#888;">
+        <span>⚔ Citadel Private — макро и геополитика</span>
+        <span>⚔ Citadel Trading — сделки и метрики</span>
+        <span>⚔ Citadel Mirror — 35 приваток</span>
+        <span>👥 24/7 поддержка команды</span>
+      </div>
+    </div>
+    <a href="#" class="cta-btn">КУПИТЬ CITADEL → 100$</a>
+    <div class="cta-note">
+      Не понравилось? Пишешь <strong style="color:white">@citadel_spt</strong><br>
+      Деньги вернём без вопросов в течение 36 часов.
+    </div>
+  </div>
+</div>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-brand">CITADEL</div>
+  <div class="footer-meta">Private · Trading · Mirror · 2025</div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
 </body>
 </html>
